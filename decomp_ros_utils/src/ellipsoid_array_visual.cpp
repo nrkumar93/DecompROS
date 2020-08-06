@@ -52,6 +52,9 @@ namespace decomp_rviz_plugins {
       Quatf q(es.eigenvectors().determinant() * es.eigenvectors());
       Ogre::Quaternion o(q.w(), q.x(), q.y(), q.z());
       objs_[cnt]->setOrientation(o);
+
+      objs_[cnt]->setColor(it.display_rgba[0], it.display_rgba[1], it.display_rgba[2], it.display_rgba[3]);
+
       cnt++;
     }
   }

@@ -131,7 +131,8 @@ decomp_ros_msgs::PolyhedronArray polyhedron_array_to_ros(const vec_E<Polyhedron<
 }
 
 template <int Dim>
-decomp_ros_msgs::EllipsoidArray ellipsoid_array_to_ros(const vec_E<Ellipsoid<Dim>>& Es) {
+decomp_ros_msgs::EllipsoidArray ellipsoid_array_to_ros(const vec_E<Ellipsoid<Dim>>& Es,
+                                                       const vec_E<Vec4f>& rgba = vec_E<Vec4f>()) {
   decomp_ros_msgs::EllipsoidArray ellipsoids;
   for (unsigned int i = 0; i < Es.size(); i++) {
     decomp_ros_msgs::Ellipsoid ellipsoid;
@@ -149,6 +150,22 @@ decomp_ros_msgs::EllipsoidArray ellipsoid_array_to_ros(const vec_E<Ellipsoid<Dim
           ellipsoid.E[3 * x + y] = 0;
       }
     }
+
+    if (!rgba.empty())
+    {
+      ellipsoid.display_rgba[0] = rgba[i](0);
+      ellipsoid.display_rgba[1] = rgba[i](1);
+      ellipsoid.display_rgba[2] = rgba[i](2);
+      ellipsoid.display_rgba[3] = rgba[i](3);
+    }
+    else
+    {
+      ellipsoid.display_rgba[0] = 204;
+      ellipsoid.display_rgba[1] = 51;
+      ellipsoid.display_rgba[2] = 204;
+      ellipsoid.display_rgba[3] = 0.5;
+    }
+
     ellipsoids.ellipsoids.push_back(ellipsoid);
   }
 

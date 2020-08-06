@@ -45,13 +45,13 @@ void EllipsoidArrayDisplay::processMessage(const decomp_ros_msgs::EllipsoidArray
   std::shared_ptr<EllipsoidArrayVisual> visual;
   visual.reset(new EllipsoidArrayVisual(context_->getSceneManager(), scene_node_));
 
-  visual->setMessage(msg);
-  visual->setFramePosition(position);
-  visual->setFrameOrientation(orientation);
-
   float alpha = alpha_property_->getFloat();
   Ogre::ColourValue color = color_property_->getOgreColor();
   visual->setColor(color.r, color.g, color.b, alpha);
+
+  visual->setMessage(msg);
+  visual->setFramePosition(position);
+  visual->setFrameOrientation(orientation);
 
   visual_ = visual;
 }
