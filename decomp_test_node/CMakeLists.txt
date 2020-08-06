@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(decomp_test_node)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated-declarations")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated-declarations")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+set(DECOMP_UTIL_INCLUDE_DIRS "../DecompUtil/include")
 
 find_package(catkin_simple REQUIRED)
 find_package(cmake_modules REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(decomp_util REQUIRED)
+#find_package(decomp_util REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIRS} ${DECOMP_UTIL_INCLUDE_DIRS})
 
 catkin_simple()
